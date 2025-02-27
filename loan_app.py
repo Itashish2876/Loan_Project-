@@ -47,3 +47,6 @@ if st.button('Predict'):
         st.write("Loan Denied.\nYou cannot get a loan :")
     else:
         st.write("Loan Approved: \nNow you get a loan :")
+
+
+        ## here is your gandhi 
