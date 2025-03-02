@@ -52,15 +52,14 @@ model = pickle.load(open("Loan_Model.pkl", 'rb'))
 
 label_encoder = LabelEncoder()
 
-# Lets Create Web App ----------------------------------------
-# Main Streamlit app
+# Lets Create  Main Streamlit Web App ----------------------------------------
 
 # Main content area
 st.markdown('<div class="main">', unsafe_allow_html=True)
 
 st.title("Loan Prediction Regression Model")
 age = st.number_input("Enter the Age:", min_value=0)
-gender = st.selectbox("Choose the Gender As", options = ['Male' , ' Female'])
+gender = st.selectbox("Choose the Gender As 1 for Male 0 for Female :", options = ['Male' , ' Female'])
 income = st.number_input("Enter the Income:", min_value=0.0)
 credit_score = st.number_input("Enter the Credit Score:", min_value=0)
 
@@ -72,17 +71,16 @@ def predictive(age,gender,income,credit_score):          # First we define the f
    
     ## Encode the categorical columns 
     Encoded_gender = label_encoder.fit_transform([gender])[0]  # Then we encode the columns which are categorical I have only one categorical column 
-    print(Encoded_gender)
+   
     ## Prepare Features Array 
     features = np.array([[age,Encoded_gender,income,credit_score]])  # Then we convert are columns to 2d array 
-    print(features)
-    
+ 
     ## Scalling
     scaled_features = scaler.transform(features)            # Then we do transform features columns 
-    print(scaled_features)
+   
     ## Predict by model
     result = model.predict(scaled_features)                  # Atlast we finally predict the model by logisicRegression 
-    print(result)
+ 
     return result[0]
 
 
